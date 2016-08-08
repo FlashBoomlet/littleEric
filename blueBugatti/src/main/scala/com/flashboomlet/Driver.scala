@@ -3,6 +3,7 @@ package com.flashboomlet
 import com.flashboomlet.io.DatabaseDriver
 import com.flashboomlet.io.MongoConstants
 
+
 /** Entry point into the program */
 object Driver extends MongoConstants {
 
@@ -11,7 +12,6 @@ object Driver extends MongoConstants {
 
   /** Entry point into the program (main method) */
   def main(args: Array[String]): Unit = {
-
   }
 
 }

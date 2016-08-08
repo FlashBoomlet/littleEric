@@ -55,8 +55,8 @@ object SSANameParser extends LazyLogging {
     writer.writeRow(Seq("name", "count", "percent_male", "percent_female"))
     writer.writeAll(nameComps.map(n => Seq(n.name,
       n.count,
-      n.percentages.get("m").get.stripTrailingZeros().toPlainString,
-      n.percentages.get("f").get.stripTrailingZeros().toPlainString)))
+      (n.percentages.get("m").get * 100).stripTrailingZeros().toPlainString,
+      (n.percentages.get("f").get * 100).stripTrailingZeros().toPlainString)))
   }
 
   /** Converts a list of Names to NameComponents
@@ -105,10 +105,10 @@ object SSANameParser extends LazyLogging {
   }
 
   /** TSV Formatter */
-  private implicit object LocalTSVFormat extends TSVFormat
+  implicit object LocalTSVFormat extends TSVFormat
 
   /** CSV Formatter */
-  private implicit object LocalCSVFormat extends DefaultCSVFormat
+  implicit object LocalCSVFormat extends DefaultCSVFormat
 
   /** Determines if a name exists for a gender already */
   private def isNameDuplicate(name: Name): List[String] => Boolean = (other: List[String]) =>
